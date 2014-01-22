@@ -50,10 +50,14 @@
     [self.view addSubview:testView6];
     
     [self listViews];
+    [self printPrimesUpToValue:100];
 }
 
 - (void)listViews {
-    [self logViewHierarchyWithCurrentView:(NamedView *)self.view level:0];
+    NSLog(@"====== Logging View Hierarchy ======");
+    [self logViewHierarchyWithCurrentView:(NamedView *)self.view
+                                    level:0];
+    NSLog(@"====== End Logging View Hierarchy ====== \n\n");
 }
 
 - (void)logViewHierarchyWithCurrentView:(NamedView *)currentView level:(NSInteger)level {
@@ -69,5 +73,27 @@
                                         level:level + 1];
     }
 }
+
+-(void)printPrimesUpToValue:(NSInteger)maxValue {
+    NSLog(@"====== Primes Calculation ======");
+    
+    for (NSInteger currentNumber = 0; currentNumber <= maxValue; currentNumber++) {
+        BOOL isPrime = YES;
+        for (int x = 2; x < currentNumber - 1; x++) {
+            if (currentNumber % x == 0) {
+                isPrime = NO;
+                break;
+            }
+        }
+        
+        if (isPrime) {
+            NSLog(@"%i is a prime number", currentNumber);
+        }
+    }
+    
+    NSLog(@"====== End Primes Calculation ======");
+}
+
+
 
 @end
